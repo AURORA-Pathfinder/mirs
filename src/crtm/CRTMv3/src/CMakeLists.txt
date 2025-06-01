@@ -227,11 +227,12 @@ endif()
 set(MODULE_DIR module/${PROJECT_NAME}/${CMAKE_Fortran_COMPILER_ID}/${CMAKE_Fortran_COMPILER_VERSION})
 
 # Build the library
-add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${crtm_src_files})
+add_library(${PROJECT_NAME} STATIC ${crtm_src_files})
 
 # Link dependencies
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenMP::OpenMP_Fortran)
 target_link_libraries(${PROJECT_NAME} PUBLIC NetCDF::NetCDF_Fortran)
+#target_link_libraries(${PROJECT_NAME} PUBLIC NetCDF_Fortran)
 
 # Set the Fortran module directory for build and install phases
 set_target_properties(${PROJECT_NAME} PROPERTIES

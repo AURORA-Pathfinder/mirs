@@ -77,7 +77,7 @@ if(DEFINED ENV{NETCDF_PATH})
 elseif(DEFINED ENV{NETCDF})
   list(APPEND CMAKE_PREFIX_PATH $ENV{NETCDF})
 endif()
-find_package(NetCDF REQUIRED Fortran)
+find_package(NetCDF REQUIRED COMPONENTS Fortran)
 
 ## Sources (unchanged from original)
 add_subdirectory(src)
