@@ -87,9 +87,9 @@ else() # Download CRTM coefficients
     set(DOWNLOAD_URL "${DOWNLOAD_BASE_URL}/${test_files_dirname}")
     set(DOWNLOAD_DEST "${CRTM_COEFFS_PATH}/${test_files_dirname}")
     message(STATUS "Downloading CRTM coeffs files from: ${DOWNLOAD_URL} to ${DOWNLOAD_DEST}")
-    #file(DOWNLOAD ${DOWNLOAD_URL} ${DOWNLOAD_DEST}
-    #  EXPECTED_MD5 ${checksum}
-    #  SHOW_PROGRESS)
+    file(DOWNLOAD ${DOWNLOAD_URL} ${DOWNLOAD_DEST}
+      EXPECTED_MD5 ${checksum}
+      SHOW_PROGRESS)
   endif()
 
   # -- UNTAR -- 
@@ -102,13 +102,13 @@ else() # Download CRTM coefficients
     message(STATUS "Untarring the downloaded file (~2 minutes) to ${UNTAR_DEST}")
     # Use the built-in tar feature to work around an issue on Orion with the
     # system tar command. See: https://github.com/JCSDA/spack-stack/issues/1355
-    #execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${UNTAR_DEST}
-    #                ${CMAKE_COMMAND} -E tar xzf ${DOWNLOAD_DEST}
-    #                RESULT_VARIABLE result
-    #                OUTPUT_QUIET ERROR_QUIET)
-    #if(NOT result EQUAL 0)
-    #  message(FATAL_ERROR "Failed to untar the file.")
-    #endif()
+    execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${UNTAR_DEST}
+                    ${CMAKE_COMMAND} -E tar xzf ${DOWNLOAD_DEST}
+                    RESULT_VARIABLE result
+                    OUTPUT_QUIET ERROR_QUIET)
+    if(NOT result EQUAL 0)
+      message(FATAL_ERROR "Failed to untar the file.")
+    endif()
   else()
     message(STATUS "Files have already been untarred. Skipping.")
   endif()
