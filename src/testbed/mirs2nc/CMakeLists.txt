@@ -8,7 +8,7 @@ if (MIRS_BUILD_MIRS2NC)
 		utc2hms.cpp wrt_nc_gdata.cpp wrt_nc_snd.cpp wrt_nc_img.cpp
 		constants.h defaults.h defvar.h common_header.h swath.h
 		)
-	target_link_libraries(mirs2nc hdf5::hdf5-shared NetCDF::NetCDF)
+	target_link_libraries(mirs2nc hdf5::hdf5 NetCDF::NetCDF)
 	# Same for gfortran in Intel
 	target_compile_options(mirs2nc PRIVATE -mcmodel=large -std=c++11)
 
