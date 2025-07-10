@@ -349,7 +349,7 @@ CONTAINS
     REAL, DIMENSION(nlat,nlon)        :: xdummy
     REAL, DIMENSION(:,:,:)            :: Arr
     iu=get_lun()
-    OPEN(iu,FILE=NWPFile,FORM='UNFORMATTED',ACCESS='DIRECT',RECL=nlon*nlat*4)
+    OPEN(iu,FILE=NWPFile,FORM='UNFORMATTED',ACCESS='DIRECT',RECL=nlon*nlat*4,CONVERT='LITTLE_ENDIAN')
     DO irec=1,nparam
         read(iu,rec=irec) xdummy
         Arr(:,:,irec) = xdummy(:,:)
